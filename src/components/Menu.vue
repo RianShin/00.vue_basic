@@ -56,7 +56,7 @@ export default {
         {
           title: 'about',
           active: true,
-          icon: 'mdi-account-badge',
+          icon: 'mdi-account',
           subItems: [
             {
               title: 'dashboard',
