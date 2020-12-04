@@ -5,56 +5,46 @@
       color="primary"
       dark
     >
-      <div class="d-flex align-center">
-        <v-img
-          alt="Vuetify Logo"
-          class="shrink mr-2"
-          contain
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-logo-dark.png"
-          transition="scale-transition"
-          width="40"
-        />
-
-        <v-img
-          alt="Vuetify Name"
-          class="shrink mt-1 hidden-sm-and-down"
-          contain
-          min-width="100"
-          src="https://cdn.vuetifyjs.com/images/logos/vuetify-name-dark.png"
-          width="100"
-        />
-      </div>
-
-      <v-spacer></v-spacer>
-
-      <v-btn
-        href="https://github.com/vuetifyjs/vuetify/releases/latest"
-        target="_blank"
-        text
-      >
-        <span class="mr-2">Latest Release</span>
-        <v-icon>mdi-open-in-new</v-icon>
-      </v-btn>
+      <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
+      <site-title :title="title"></site-title>
+      <v-spacer/>
     </v-app-bar>
+    <v-navigation-drawer app v-model="drawer">
+      <v-list-item>
+        <v-list-item-content>
+          <v-list-item-title class="title">
+            Application
+          </v-list-item-title>
+          <v-list-item-subtitle>
+            subtext
+          </v-list-item-subtitle>
+        </v-list-item-content>
+      </v-list-item>
 
-    <v-main>
-      <HelloWorld/>
-    </v-main>
+      <v-divider></v-divider>
+      <site-menu></site-menu>
+    </v-navigation-drawer>
+    <v-content>
+      <router-view/>
+    </v-content>
+    <site-footer :footer="footer"></site-footer>
   </v-app>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld'
-
+import SiteTitle from '@/components/title'
+import SiteFooter from '@/components/Footer'
+import SiteMenu from '@/components/Menu'
 export default {
+  components: { SiteTitle, SiteFooter, SiteMenu },
   name: 'App',
-
-  components: {
-    HelloWorld
-  },
-
-  data: () => ({
-    //
-  })
+  data () {
+    return {
+      drawer: false,
+      items: [],
+      title: 'MyTitle',
+      footer: 'MyFooter'
+    }
+  }
 }
 </script>
